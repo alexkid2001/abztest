@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="users-block__action">
-                <button class="button" @click="moreUsers" :class="{'disabled': disableGetUsers}">Show more</button>
+                <button class="button" @click="moreUsers" v-if="!disableGetUsers">Show more</button>
             </div>
         </div>
     </div>
