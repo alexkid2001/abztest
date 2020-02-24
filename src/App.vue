@@ -76,13 +76,11 @@ export default {
     },
     closeModal() {
       body.classList.remove('overlay');
-      // this.$refs.modalSuccess.classList.remove('active');
       this.modalVisible = false;
     },
     showModal() {
       this.modalVisible = true;
       body.classList.add('overlay');
-      // this.$refs.modalSuccess.classList.add('active');
     },
     handleIntersect(entries, observer) {
       entries.forEach(entry => {
@@ -103,10 +101,9 @@ export default {
   },
   mounted() {
     if(!window["IntersectionObserver"]) {
-      console.log('No IntersectionObserve');
+      this.showComponents = true;
     } else {
       this.createObserve();
-      console.log('IntersectionObserve');
     }
   }
 };
