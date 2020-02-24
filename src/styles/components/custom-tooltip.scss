@@ -1,0 +1,13 @@
+.custom-tooltip {
+  position: fixed;
+  padding: 6px 11px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #fefefe;
+  background-color: #000000;
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
+  z-index: 1070;
+}
+[data-tooltip] {
+  cursor: pointer;
+}

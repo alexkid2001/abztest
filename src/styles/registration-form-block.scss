@@ -1,0 +1,46 @@
+.registration-form-block {
+
+  .content-block {
+
+    &__wrap {
+      padding-top: 150px;
+      padding-bottom: 163px;
+    }
+
+    &__description {
+      margin-top: 17px;
+    }
+  }
+
+  @media screen and (max-width: 991px) {
+
+    .content-block {
+
+      &__wrap {
+        padding-top: 110px;
+        padding-bottom: 118px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+
+    .content-block {
+
+      &__wrap {
+        padding-top: 75px;
+      }
+
+      &__description {
+        padding-left: 25px;
+        padding-right: 25px;
+        margin-top: 18px;
+        line-height: 22px;
+      }
+
+      &__wrap {
+        padding-bottom: 80px;
+      }
+    }
+  }
+}

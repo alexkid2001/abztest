@@ -1,0 +1,88 @@
+.banner {
+  //background: url("/assets/images/banner-photo.jpg");
+  background: url("/assets/images/banner-photo.webp");
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  margin-top: 60px;
+
+  &__wrap {
+    padding: 107px 15px 115px;
+  }
+
+  h1.banner__title {
+    //font-size: 50px;
+    //line-height: 54px;
+    font-weight: 400;
+    margin: 0;
+    letter-spacing: -.5px;
+    text-transform: uppercase;
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 3;
+
+  }
+
+  &__title, &__description {
+    color: white !important;
+    //width: calc(100% / 12 * 7 - 30px);
+    padding-right: 15px;
+  }
+
+  &__description {
+    margin-top: 24px;
+  }
+
+  &__action {
+    margin-top: 34px;
+  }
+
+  @media screen and (max-width: 991px) {
+    background-position: left top;
+    background-size: 1024px auto;
+
+    &__wrap {
+      padding-top: 59px;
+      padding-bottom: 65px;
+    }
+
+    &__title {
+      padding-right: 40px;
+    }
+
+    &__description {
+      margin-top: 28px;
+      padding-right: 0;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    margin-top: 40px;
+    background-position: center top;
+    background-size: cover;
+
+    &__wrap {
+      padding: 70px 0 75px;
+    }
+
+    h1.banner__title {
+      letter-spacing: -0.3px;
+      text-align: center;
+      padding: 0 10px;
+    }
+
+    &__description {
+      margin-top: 18px;
+      text-align: center;
+    }
+
+    &__action {
+      margin-top: 25px;
+      text-align: center;
+    }
+  }
+}

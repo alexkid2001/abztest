@@ -1,41 +1,117 @@
 <template>
   <div id="app">
-    <Header></Header>
-    <b-form-group
-            label-cols-sm="3"
-            label="Street:"
-            label-align-sm="right"
-            label-for="nested-street"
-    >
-      <b-form-input id="nested-street"></b-form-input>
-    </b-form-group>
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <Header />
+    <Banner />
+    <Acquaint />
+    <div class="observe-label" ref="observeLabel" ></div>
+    <Users ref="users" v-if="showComponents"/>
+    <UserForm
+        @registered="resetUsers"
+        @alarm="alarm"
+        v-if="showComponents"
+    />
+    <Footer />
+    <Modal
+        :title="modalTitle"
+        :message="modalMsg"
+        :btn-title="modalBtnTitle"
+        :show="modalVisible"
+        @closeModal="closeModal"
+    />
+<!--    <div class="modal-backdrop show"></div>-->
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+// import HelloWorld from "./components/HelloWorld.vue";
 import Header from "./components/Header";
+import Banner from "./components/Banner";
+import Acquaint from "./components/Acquaint";
+import Users from "./components/Users";
+import UserForm from "./components/UserForm";
+import Footer from "./components/Footer";
+import Modal from "./components/Modal";
 import "./styles/common.scss";
+
+const body = document.querySelector('body');
+const modalTitleSuccess = 'Congratulations';
+const modalMsgSuccess = 'You have successfully passed the registration';
+const modalBtnSuccess = 'Great';
+// const Users = () => import('./components/Users');
+// const UserForm = () => import('./components/UserForm');
 
 export default {
   name: "app",
   components: {
     Header,
-    HelloWorld
+    Banner,
+    Acquaint,
+    Users,
+    UserForm,
+    Footer,
+    Modal
+  },
+  data() {
+    return {
+      modalTitle: '',
+      modalMsg:  '',
+      modalBtnTitle: '',
+      showComponents: false,
+      modalVisible: false
+    };
+  },
+  methods: {
+    resetUsers() {
+      this.modalTitle = modalTitleSuccess;
+      this.modalMsg = modalMsgSuccess;
+      this.modalBtnTitle = modalBtnSuccess;
+      this.showModal();
+      this.$refs.users.reset();
+    },
+    alarm(params) {
+      this.modalTitle = params.title;
+      this.modalMsg = params.message;
+      this.modalBtnTitle = 'Try again';
+      this.showModal();
+    },
+    closeModal() {
+      body.classList.remove('overlay');
+      // this.$refs.modalSuccess.classList.remove('active');
+      this.modalVisible = false;
+    },
+    showModal() {
+      this.modalVisible = true;
+      body.classList.add('overlay');
+      // this.$refs.modalSuccess.classList.add('active');
+    },
+    handleIntersect(entries, observer) {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          this.showComponents = true;
+          observer.unobserve(this.$refs.observeLabel);
+        }
+      });
+    },
+    createObserve() {
+      const option = {
+        root: null,
+        threshold: '0'
+      }
+      const observer = new IntersectionObserver(this.handleIntersect, option);
+      observer.observe(this.$refs.observeLabel);
+    }
+  },
+  mounted() {
+    if(!window["IntersectionObserver"]) {
+      console.log('No IntersectionObserve');
+    } else {
+      this.createObserve();
+      console.log('IntersectionObserve');
+    }
   }
 };
 </script>
 
-<style lang="scss">
+<style>
 
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>

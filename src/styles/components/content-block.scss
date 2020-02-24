@@ -1,0 +1,43 @@
+.content-block {
+  background-color: $background-color;
+  &__wrap {
+    //padding-top: 152px;
+    //padding-bottom: 153px;
+    padding: 152px 15px 153px;
+  }
+
+  &__title {
+    text-align: center;
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+  }
+
+  &__description {
+    text-align: center;
+    margin: 18px auto 0;
+    max-width: 450px;
+  }
+
+  @media screen and (max-width: 991px) {
+
+    &__wrap {
+      padding-top: 113px;
+      padding-bottom: 115px;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+
+    &__wrap {
+      padding: 75px 0;
+    }
+
+    &__description {
+      margin-top: 8px;
+    }
+  }
+}
